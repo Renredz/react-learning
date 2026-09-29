@@ -18,7 +18,7 @@ In React, there is no special syntax for writing conditions. Instead, you’ll u
 
 3. When you build a user interface with React, you will first break it apart into pieces called components. Then, you will describe the different visual states for each of your components. Finally, you will connect your components together so that the data flows through them. In this tutorial, we’ll guide you through the thought process of building a searchable product data table with React.
 
-4. React was made in 2011 by Jordan Walker at Facebook and in 2025 it moved to a new React Foundation under the Linux Foundation. 
+4. React was made in 2011 by Jordan Walke at Facebook and in 2025 it moved to a new React Foundation under the Linux Foundation. 
 
 
 ## Sources
