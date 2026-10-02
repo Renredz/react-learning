@@ -16,6 +16,17 @@ console.log(sensor);
 
 // Questions
 // 1. each console.log prints: [1, 2, 3, 4] then [1, 2, 3, 4] [1, 2, 3, 4, 5] then id: S1, readings: [0.2, 0.4, 0.9] 
-// 2. a did dont change when pushing to b because the push was to b only, making b different from a and not causing anything to change in a. 
-// 3. I guess the ... makes the changes happen at the start instead of at the end of what it is making a change to.
-// 4. One was changed from S1 to S2 and the other was pushed to have one more value at the end.   
+// 2. const b = a copies the arrow meaning it now also points to what a points to, not the array itself. a and b point to the same array/thing, so b.push(4) changes what both of them point to so both change.
+// 3. ... is the spread operator meaning it puts the intem into where you add the operator. It unpacks the items into a new array or object. Now c points to its own, new array, so c.push(5) doesn't touch a. It's the same as a.copy() in Python. 
+// 4. { ...sensor } makes a new object with the same values, but only one level deep. This is called a shallow copy. 
+
+// React checks whether data is a new object to decide whether to redraw. That's why you'll see setItems([...items, newItem]) in PRs instead of items.push(newItem)
+
+const x = { tags: ["a"] };
+const y = { ...x, tags: [...x.tags] };
+y.tags.push("b");
+console.log(x.tags);
+
+// Prediction: 
+// a, b 
+// Output: [ 'a' ]
