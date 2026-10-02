@@ -22,7 +22,7 @@ console.log(sensor);
 
 // React checks whether data is a new object to decide whether to redraw. That's why you'll see setItems([...items, newItem]) in PRs instead of items.push(newItem)
 
-// Part 2 
+// Extra
 const x = { tags: ["a"] };
 const y = { ...x, tags: [...x.tags] };
 y.tags.push("b");
@@ -32,3 +32,21 @@ console.log(x.tags);
 // a, b 
 // Output: [ 'a' ] 
 // because only y contains b, x still only contains a. 
+
+// Part B
+const measurements = [
+  { channel: "mic1", level: 62 },
+  { channel: "mic2", level: 71 },
+  { channel: "mic3", level: 58 },
+];
+// 1. Log the level of mic2
+console.log(measurements[1].level) // outputs only the mic level
+console.log(measurements.find(m => m.channel === "mic2")) // outputs channel and mic level
+// 2. Add mic4 with level 65
+const m = measurements.push({channel: "mic4", level: 65})
+console.log(measurements)
+// 3. Log how many measurements there are
+console.log(measurements.length)
+// 4. Define a type for one measurement and use it on the array
+type Measurement = { channel: string; level: number;};
+measurements.useState<Measurements[]>([]); // Does not work but I dont know how to apply the type I defined to a preexisting array. 
