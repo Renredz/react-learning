@@ -34,7 +34,8 @@ console.log(x.tags);
 // because only y contains b, x still only contains a. 
 
 // Part B
-const measurements = [
+type Measurement = { channel: string; level: number;}; // added at task 4. 
+const measurements: Measurement[] = [
   { channel: "mic1", level: 62 },
   { channel: "mic2", level: 71 },
   { channel: "mic3", level: 58 },
@@ -48,5 +49,5 @@ console.log(measurements)
 // 3. Log how many measurements there are
 console.log(measurements.length)
 // 4. Define a type for one measurement and use it on the array
-type Measurement = { channel: string; level: number;};
-measurements.useState<Measurements[]>([]); // Does not work but I dont know how to apply the type I defined to a preexisting array. 
+
+
