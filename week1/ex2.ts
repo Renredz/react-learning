@@ -44,7 +44,7 @@ const measurements: Measurement[] = [
 console.log(measurements[1].level) // outputs only the mic level
 console.log(measurements.find(m => m.channel === "mic2")) // outputs channel and mic level
 // 2. Add mic4 with level 65
-const m = measurements.push({channel: "mic4", level: 65})
+measurements.push({channel: "mic4", level: 65})
 console.log(measurements)
 // 3. Log how many measurements there are
 console.log(measurements.length)
