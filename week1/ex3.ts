@@ -15,7 +15,7 @@ const describe = (name: string, level: number): string => {
 };
 
 // Template string: backticks, ${ } inserts a value (like sprintf)
-`Level: ${62} dB`                 // → "Level: 62 dB"
+`Level: ${62} dB`                 // → "Level: 62 dB". Anexample written by Claude. 
 
 // Ternary: condition ? valueIfTrue : valueIfFalse  (a one-line if/else)
 71 > 70 ? "loud" : "ok"           // → "loud"
@@ -46,7 +46,7 @@ console.log(ratioTodB(2));
 // 2. Write levelLabel(level: number): string. It should return "quiet" below 60 dB and "normal" otherwise. Use a ternary.
 const isQuiet = (level: number) => level < 60;
 function levelLabel(level: number): string {
-  return `${isQuiet(level) ? "quiet" : "normal"}`;
+  return isQuiet(level) ? "quiet" : "normal";
 }
 console.log(isQuiet(56)); // true
 console.log(levelLabel(56));  // quiet
