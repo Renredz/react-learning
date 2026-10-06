@@ -54,6 +54,6 @@ console.log(levelLabel(56));  // quiet
 // 3. Rewrite label from the Predict block as an arrow function.
 const label2 = (channel: string, level: number): string => {
   const loud = level > 70;
-  return `${channel}: ${loud ? "loud" : "ok"}`;
+  return `${channel}: ${loud ? "LOUD" : "ok"}`;
 };
-console.log(label2("mic4", 73)); // mic4: loud
+console.log(label2("mic4", 73)); // mic4: LOUD
