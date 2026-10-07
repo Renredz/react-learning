@@ -1,3 +1,4 @@
+export {};   // makes this file its own module, so its names don't clash with other files
 const levels = [62, 71, 58, 65];
 
 // map: run a function on every item → NEW array, same length
@@ -44,7 +45,7 @@ const measurements: Measurement[] = [
 const channels = measurements.map(m => m.channel); 
 console.log(channels);
 // 2. Make an array of the measurements above 60 dB.
-const high60 = measurements.filter(m => m.level > 60).map(m => m.level);
+const high60 = measurements.filter(m => m.level > 60);
 console.log(high60);
 // 3. Make an array of the names of the channels above 60 dB. Use chaining.
 const ch60 = measurements.filter(m => m.level > 60).map(m => m.channel);

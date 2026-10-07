@@ -1,3 +1,4 @@
+export {};   // makes this file its own module, so its names don't clash with other files
 const a = [1, 2, 3];
 const b = a;
 b.push(4);
