@@ -1,3 +1,4 @@
+export {};   // makes this file its own module, so its names don't clash with other files
 // MATLAB:  function y = square(x)
 //              y = x^2;
 //          end
@@ -37,6 +38,7 @@ console.log(isLoud(65)); // ok Correction: Wrong. The output is "false"
 console.log(label("mic2", 71)); // mic2 LOUD  (Forgot the : otherwise correct) 
 console.log(label("mic3", double(30))); // mic3 ok (Forgot the : otherwise correct)
 
+
 // Apply 
 // 1. Write an arrow function ratioToDb that takes a pressure ratio and returns 20 * log10(ratio) in dB. Test it with 10 (should give 20) and 2.
 const ratioTodB = (ratio: number): number => 20 * Math.log10(ratio); 
@@ -54,6 +56,6 @@ console.log(levelLabel(56));  // quiet
 // 3. Rewrite label from the Predict block as an arrow function.
 const label2 = (channel: string, level: number): string => {
   const loud = level > 70;
-  return `${channel}: ${loud ? "loud" : "ok"}`;
+  return `${channel}: ${loud ? "LOUD" : "ok"}`;
 };
-console.log(label2("mic4", 73)); // mic4: loud
+console.log(label2("mic4", 73)); // mic4: LOUD
