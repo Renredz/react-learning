@@ -1,5 +1,6 @@
 // A component is a function that returns JSX (HTML-like markup).
 // Its name MUST start with a capital letter.
+```tsx
 function Greeting() {
   return <h1>Hello</h1>;
 }
