@@ -1,6 +1,21 @@
 import { useState } from 'react';
 
-function Square({ value, onSquareClick }) {
+// A square is "X", "O" or empty. The | means "or" (a union type).
+type SquareValue = "X" | "O" | null;
+
+// A prop can be a function. "() => void" = takes nothing, returns nothing.
+type SquareProps = { value: SquareValue; onSquareClick: () => void };
+
+type BoardProps = {
+  xIsNext: boolean;
+  squares: SquareValue[];                          // an array of SquareValue
+  onPlay: (nextSquares: SquareValue[]) => void;    // a function that takes the new board
+};
+
+// useState can be told its type with < >:
+useState<SquareValue[][]>([Array(9).fill(null)])   // history = array of boards
+
+function Square({ value, onSquareClick }: SquareProps) {
   return (
     <button className="square" onClick={onSquareClick}>
       {value}
@@ -8,8 +23,8 @@ function Square({ value, onSquareClick }) {
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
-  function handleClick(i) {
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
     if (squares[i] || calculateWinner(squares)) {
     return;
   }
@@ -53,22 +68,22 @@ function Board({ xIsNext, squares, onPlay }) {
 } 
 
 export default function Game() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-  const xIsNext = currentMove % 2 === 0;
+  const [history, setHistory] = useState<SquareValue[][]>([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;  
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares) {
+  function handlePlay(nextSquares: SquareValue[]) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(nextMove) {
+  function jumpTo(nextMove: number) {
     setCurrentMove(nextMove);
   }
 
-  const moves = history.map((squares, move) => {
+  const moves = history.map((_squares, move) => {
     let description;
     if (move > 0) {
       description = 'Go to move #' + move;
@@ -94,7 +109,7 @@ export default function Game() {
   );
 }
 
-function calculateWinner(squares) {
+function calculateWinner(squares: SquareValue[]): SquareValue {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -117,3 +132,7 @@ function calculateWinner(squares) {
 // <Square value="1+1" />     // shows what? The value of square 2
 // <Square value={"1+1"} />   // shows what? Error since this will parse the string and not a number value
 // <Square value={1 + 1} />   // what does TypeScript say, and why?  The value of square two, I guess
+
+// Why does handleClick use squares.slice() instead of changing squares directly? Think of Week 1, exercise 2.It uses slice in order to not repeat, meaning it would have to refactor a lot more, instead it slices. 
+// Why does the board’s state live in Game and not in each Square? States live in Game so that each componens stands alone and communicates with Game, which can communicate with each component without them having to communicate with each other. This makes bugs easier to avoid and a more structured code. 
+// What does key={move} do? It tracks the moves by saying that a move is a key to track. 
