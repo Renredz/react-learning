@@ -12,9 +12,6 @@ type BoardProps = {
   onPlay: (nextSquares: SquareValue[]) => void;    // a function that takes the new board
 };
 
-// useState can be told its type with < >:
-useState<SquareValue[][]>([Array(9).fill(null)])   // history = array of boards
-
 function Square({ value, onSquareClick }: SquareProps) {
   return (
     <button className="square" onClick={onSquareClick}>
@@ -133,6 +130,7 @@ function calculateWinner(squares: SquareValue[]): SquareValue {
 // <Square value={"1+1"} />   // shows what? Error since this will parse the string and not a number value
 // <Square value={1 + 1} />   // what does TypeScript say, and why?  The value of square two, I guess
 
-// Why does handleClick use squares.slice() instead of changing squares directly? Think of Week 1, exercise 2.It uses slice in order to not repeat, meaning it would have to refactor a lot more, instead it slices. 
+// Why does handleClick use squares.slice() instead of changing squares directly? This makes a copy of the array so we still have the onld one and can see what it has been earlier and if any changes occured. 
 // Why does the board’s state live in Game and not in each Square? States live in Game so that each componens stands alone and communicates with Game, which can communicate with each component without them having to communicate with each other. This makes bugs easier to avoid and a more structured code. 
-// What does key={move} do? It tracks the moves by saying that a move is a key to track. 
+// - Mostly right. The key point: Game needs to see all the squares to find a winner and keep the history. Sibling components can’t share state with each other, so the state moves up to their common parent, and the parent passes it down as props. React calls this lifting state up.
+// What does key={move} do? key tracks which elements have been changed and links them to their respective move. Since moves are set and cannot be re-ordered, this is fine here. 
