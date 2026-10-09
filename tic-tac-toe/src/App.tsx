@@ -126,9 +126,9 @@ function calculateWinner(squares: SquareValue[]): SquareValue {
   return null;
 }
 
-// <Square value="1+1" />     // shows what? The value of square 2
-// <Square value={"1+1"} />   // shows what? Error since this will parse the string and not a number value
-// <Square value={1 + 1} />   // what does TypeScript say, and why?  The value of square two, I guess
+// <Square value="1+1" />     // shows what? The string 1+1
+// <Square value={"1+1"} />   // shows what? Also the string 1+1
+// <Square value={1 + 1} />   // what does TypeScript say, and why?  The value of this, which is 2
 
 // Why does handleClick use squares.slice() instead of changing squares directly? This makes a copy of the array so we still have the onld one and can see what it has been earlier and if any changes occured. 
 // Why does the board’s state live in Game and not in each Square? States live in Game so that each componens stands alone and communicates with Game, which can communicate with each component without them having to communicate with each other. This makes bugs easier to avoid and a more structured code. 
