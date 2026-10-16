@@ -1,4 +1,5 @@
 import { useState } from "react";
+import EffectDemo from "./EffectDemo";
 
 const ratioTodB = (ratio: number): number => 20 * Math.log10(ratio); // Defined outside the app to avoid unnecessary rendering
 
@@ -17,6 +18,7 @@ export default function App() {
       placeholder="Pressure ratio"
       />
       <p>Ratio {ratio} = {dB.toFixed(2)} dB</p>
+      <EffectDemo />
     </> 
   );}
 }
@@ -26,3 +28,11 @@ export default function App() {
 // If it is added only in the first instance then the other two overwrites it and it only adds 1 per click still. 
 // what does the page show when the box is empty? Ratio: 0 = -infinity dB
 // And when you type abc? error. No Ratio: NaN = NaN dB
+
+// Block 2
+// 1. What logs, in what order, when the page loads? First the dB, as before, then the Effect demo. 
+// 2. You type 2. What logs now? Does effect A run? No, type B. 
+// 3. What does the browser tab’s title say after you type 2? render effect B
+
+// Would it be better to do it in a useEffect with a separate dB state, like useEffect(() => setDb(ratioTodB(ratio)), [ratio])?
+// No, dB is a calculation and does not fetch information from any external source other than the users input so that should remain a component not an effect. 
