@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EffectDemo from "./EffectDemo";
+import Weather from "./Weather";
 
 const ratioTodB = (ratio: number): number => 20 * Math.log10(ratio); // Defined outside the app to avoid unnecessary rendering
 
@@ -18,7 +18,7 @@ export default function App() {
       placeholder="Pressure ratio"
       />
       <p>Ratio {ratio} = {dB.toFixed(2)} dB</p>
-      <EffectDemo />
+      <Weather />
     </> 
   );}
 }
