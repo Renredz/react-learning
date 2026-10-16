@@ -8,7 +8,7 @@ export default function App() {
   const dB = ratioTodB(ratio);    // calls the function defined outside the app so it wont be recreated every render
   
 
-  return (
+ { return (
     <>
     <h1>dB calculator</h1>
     <input
@@ -17,17 +17,12 @@ export default function App() {
       placeholder="Pressure ratio"
       />
       <p>Ratio {ratio} = {dB.toFixed(2)} dB</p>
-    </>
-  );
-  //<button>Ratio {ratio} = {ratioTodB} dB</button>;
-
-  //const [count, setCount] = useState(0);
-
- // function handleClick() {
-   // setCount(count + 1);
-   // setCount(count + 1);
-   // setCount(count + 1);
- // }
-
-  //return <button onClick={handleClick}>Count: {count}</button>; // After one button click this button should show: Count: 1
+    </> 
+  );}
 }
+
+// prediction 2 from the counter. Change it to setCount(prev => prev + 1), click once, and note the result and why. Starts at 1 and then adds 1 for each click. 
+// If all 3 instances have prev+1 then it adds 1 3 times so it increases by 3 for each click.
+// If it is added only in the first instance then the other two overwrites it and it only adds 1 per click still. 
+// what does the page show when the box is empty? Ratio: 0 = -infinity dB
+// And when you type abc? error. No Ratio: NaN = NaN dB
